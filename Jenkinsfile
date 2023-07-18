@@ -24,7 +24,7 @@ pipeline {
     }
     stage('Build and Push Docker Image') {
       environment {
-        DOCKER_IMAGE = "chaitannyaa/java_awesome-cicd:${BUILD_NUMBER}"
+        DOCKER_IMAGE = "sushantkapare1717/java_awesome-cicd:${BUILD_NUMBER}"
         REGISTRY_CREDENTIALS = credentials('dockerHub')
       }
       steps {
@@ -45,8 +45,8 @@ pipeline {
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
-                    git config user.email "crmg26696@gmail.com"
-                    git config user.name "Chaitannyaa Gaikwad"
+                    git config user.email "sushantkapare1717@gmail.com"
+                    git config user.name "Sushant Kapare"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" manifests/deployment.yml
                     git add manifests/deployment.yml
